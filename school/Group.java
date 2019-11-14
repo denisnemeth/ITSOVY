@@ -81,7 +81,7 @@ public class Group {
         return null;
     }
 
-    public Student[] getStudentBySubject() {
+    public Student[] getStudentBySubject(String subject) {
         return null;
     }
 }

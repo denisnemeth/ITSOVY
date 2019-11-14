@@ -9,13 +9,18 @@ public class Student {
     private Date birthDate;
     private Calendar cal;
     private String[]subjects;
-    private int subSize=0;
+    private int subSize;
+    private int subCapacity;
 
 
-    public Student(String firstName, String lastName, String strBirthDate) {
+    public Student(String firstName, String lastName, String strBirthDate, int subCapacity) {
         this.firstName = firstName;
         this.lastName = lastName;
         birthDate=new Date(strBirthDate);
+        this.subSize=0;
+        this.subCapacity=subCapacity;
+        this.subjects=new String[subCapacity];
+
     }
 
     public String getFirstName() {
@@ -78,20 +83,16 @@ public class Student {
         return 0;
     }
 
-    public void addSubject(String subject) {
-        if (subject.length()>3) {
-            System.out.println("Subject name is too long!");
-        } else {
-            for (int i=0; i<=subSize; i++) {
-                if (subjects[i]==subject) {
-                    System.out.println("Subject already added!");
-                    break;
-                }
-                if (subjects[i]==null) {
-                    subjects[i]=subject;
-                    subSize++;
-                }
-            }
+    public boolean addSubject(String subject) {
+        if (subject==null || subSize==subCapacity || subject.length()>3) return false;
+        subjects[subSize]=subject;
+        subSize++;
+        return true;
+    }
+
+    public void showSubjects() {
+        for (int i=0; i<subjects.length; i++) {
+            System.out.println(subjects[i]);
         }
     }
 }
